@@ -1,4 +1,4 @@
-import { finalize } from 'rxjs/operators';
+
 export class Dosya {
         constructor(
    
