@@ -1,0 +1,157 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-2">
+      Hoşgeldiniz <br>
+      
+      <b>{{adsoyad}}</b> <br>
+      <button class="btn btn-outline-warning mt-2 " [routerLink]="['/']">Anasayfaya Dön</button>
+      <button class="btn btn-outline-danger mt-2" (click)="OturumuKapat()">Oturumu Kapat</button>
+    </div>
+    <div class="col-md-8">
+      <h3 class="text-center">Dersler</h3>
+      
+      <table class="table mt-5">
+        <thead>
+          <th>Ders Adı</th>
+          <th>Öğretmen Adı</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let kayit of kayitlar">
+            <td>{{kayit.dersadi}}</td>
+            <td>{{kayit.ogradi}}</td>
+            <td><button class="btn btn-outline-warning" (click)="KayitDuzenle(kayit)">Düzenle</button></td>
+            <td><button class="btn btn-outline-danger" (click)="KayitSil(kayit)">Sil</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+    
+    <div class="col-md-4"></div>
+    
+    <div class="col-md-4 mt-5">
+      <h4>Ders Ekle / Düzenle</h4>
+      <hr>
+      <form #frm="ngForm" (submit)="Kaydet()">
+        <div class="form-group">
+          <label>Ders Adı</label>
+          <input type="text" class="form-control" name="dersadi" [(ngModel)]="secDers.dersadi" required >
+          <input type="hidden" class="form-control" name="key" [(ngModel)]="secDers.key"  >
+        </div>
+        <div class="form-group">
+          <label>Öğretmen Adı</label>
+          <input type="text" class="form-control" name="ogradi" [(ngModel)]="secDers.ogradi" required >
+        </div>
+        <div class="form-group">
+          <label>Kredi Sayısı</label>
+          <input type="text" class="form-control" name="kredi" [(ngModel)]="secDers.kredisayisi" required >
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Kaydet" class="btn btn-outline-success mt-2" [disabled]="frm.invalid">
+          
+        </div>
+        
+
+      </form>
+      <button class="btn btn-outline-danger ml-2" (click)="Vazgec()">Vazgeç</button>
+      
+      <div [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger' " *ngIf="sonuc.mesaj?.length>0">{{sonuc.mesaj}}</div>
+      
+      
+    </div>
+    <div class="col-md-2"></div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+    
+
+    <div class="col-md-8 mt-5">
+      <h3 class="text-center">Dersler</h3>
+      
+      <table class="table mt-5">
+        <thead>
+          <th>Ders Adı</th>
+          <th>Öğretmen Adı</th>
+          <th>Dosya Adı</th>
+          <th>Yüklenme Tarihi</th>
+          
+        </thead>
+        <tbody>
+          <tr *ngFor="let dosya of dosyalar">
+            <td>{{dosya.dersadi}}</td>
+            <td>{{dosya.ogradi}}</td>
+            <td>{{dosya.adi}}</td>
+            <td>{{dosya.tarih|date:'dd.MM.yy HH.mm.ss'}}</td>
+            <td><button class="btn btn-danger" (click)="DosyaSil(dosya)">Sil</button></td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
+    
+    <div class="col-md-4 mt-5">
+      <h4>Ders Dosyası Ekle</h4>
+      <hr>
+      <form #frm="ngForm" >
+        <div class="form-group">
+          <label>Ders Adı</label>
+          <input type="text" class="form-control" name="dersadi" [(ngModel)]="secDosya.dersadi" required >
+          <input type="hidden" class="form-control" name="key" [(ngModel)]="secDosya.key"  >
+        </div>
+        <div class="form-group">
+          <label>Öğretmen Adı</label>
+          <input type="text" class="form-control" name="ogradi" [(ngModel)]="secDosya.ogradi" required >
+        </div>
+        <div class="form-group mt-2">
+          <label>Dosya Yükle</label>
+          <input type="file" (change)="DosyaSec($event)">
+          <button class="btn btn-success" (click)="DosyaYukle()">Yükle</button>
+         
+        </div>
+        
+        
+
+      </form>
+      
+      
+      <div [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger' " *ngIf="sonuc.mesaj?.length>0">{{sonuc.mesaj}}</div>
+      
+      
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4 mt-5">
+      <h4>Öğrenci Ekle</h4>
+      <hr>
+      <form #ogr="ngForm" (submit)="KayitYap()">
+        <div class="form-group">
+          <label>Öğrenci İd</label>
+          <input type="text" class="form-control" name="yogrid" [(ngModel)]="secUye.id" required >
+           
+        </div>
+        <div class="form-group">
+          <label>Öğrenci Adı</label>
+          <input type="text" class="form-control" name="yogradi" [(ngModel)]="secUye.adsoyad" required >
+           
+        </div>
+        <div class="form-group">
+          <label>E-Posta</label>
+          <input type="text" class="form-control" name="ymail" [(ngModel)]="secUye.mail"  required >
+        </div>
+        <div class="form-group">
+          <label>Parola</label>
+          <input type="text" class="form-control" name="yparola" [(ngModel)]="secUye.parola"  required >
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Kaydet" class="btn btn-outline-success mt-2" [disabled]="ogr.invalid">
+          
+        </div>
+        <div [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger' " *ngIf="sonuc.mesaj?.length>0">{{sonuc.mesaj}}</div>
+        
+
+      </form>
+       
+  </div>
+</div>

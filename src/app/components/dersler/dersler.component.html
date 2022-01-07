@@ -1,0 +1,55 @@
+<div class="conrtainer mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center"><H3>Dersler</H3></div>
+    <div class="col-md-2">
+      Hoşgeldiniz <br>
+      
+      <b>{{adsoyad}}</b> <br>
+      
+      <button class="btn btn-outline-warning mt-2" [routerLink]="['/']">Anasayfaya Dön</button>
+      <button class="btn btn-outline-danger mt-2" (click)="OturumKapat()" *ngIf="fbServis.OturumKontrol()" >Oturumu Kapat</button>
+      
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <th>Ders Adı</th>
+          <th>Öğretmen İsmi</th>
+          <th>Detay</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let kayit of kayitlar">
+            <td>{{kayit.dersadi}}</td>
+            <td>{{kayit.ogradi}}</td>
+            <td><button class="btn btn-outline-primary" [routerLink]="['/detay',kayit.key]">Detayları Gör</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+      <h4 class="text-center">Ders Dosyaları</h4>
+      <table class="table">
+        <thead>
+          <th>Ders Adı</th>
+          <th>Öğretmen İsmi</th>
+          <th>Dosya İsmi</th>
+          <th>Yüklenme Tarihi</th>
+          <th>Görüntüle</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dosya of dosyalar">
+            <td>{{dosya.dersadi}}</td>
+            <td>{{dosya.ogradi}}</td>
+            <td>{{dosya.adi}}</td>
+            <td>{{dosya.tarih}}</td>
+            <td><a href="{{dosya.url}}" target="_blank">Görüntüle</a></td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

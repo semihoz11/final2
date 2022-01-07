@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h4>Ders Detayları</h4>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <table class="table">
+        <thead>
+          <th>Ders Adı</th>
+          <th>Öğretmen Adi</th>
+          <th>Kredi Sayfası</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{secDers.dersadi}}</td>
+            <td>{{secDers.ogradi}}</td>
+            <td>{{secDers.kredisayisi}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-warning" [routerLink]="['/derslerUser']">Geri Dön</button>
+    </div>
+  </div>
+</div>

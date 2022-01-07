@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h2 class="text-color-primary text-center">Dosya Yönetim Portalına Hoşgeldiniz</h2>
+    </div>
+    <div class="col-md-2">
+      Hoşgeldiniz
+      <hr> 
+      <b>{{adsoyad}}</b>
+      <hr> 
+      <button class="btn btn-danger" (click)="OturumKapat()" *ngIf="fbServis.OturumKontrol()" >Oturumu Kapat</button>
+    </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-2"></div>
+      <div class="col-md-2"></div>
+    <div class="col-md-8">
+      
+      <table class="table">
+        <thead>
+          <th>Dersleri Görüntüle</th>
+          <th>Dersleri Düzenle</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button class="btn btn-success" [routerLink]="['/derslerUser']">Görüntüle</button></td>
+            <td><button class="btn btn-warning" (click)="gonder()">Düzenle</button></td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+      <p [ngClass]="sonuc? 'alert alert-success' : 'alert alert-danger' " *ngIf="mesaj?.length>0">{{mesaj}}</p>
+
+    </div>
+  </div>
+</div>

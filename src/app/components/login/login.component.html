@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Oturum Aç</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>E-Posta</label>
+            <input type="text" name="mail" #mail class="form-control">
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Parola</label>
+            <input type="password" name="parola" #parola class="form-control">
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary" (click)="GirisYap(mail.value,parola.value)">Giriş Yap</button>
+        </div>
+      </div>
+      <div [ngClass]="sonuc.islem ? 'alert alert-success' : 'alert alert-danger' " *ngIf="sonuc.mesaj?.length>0">{{sonuc.mesaj}}</div>
+      <button class="btn btn-info" (click)="GosterGizle()">Göster/Gizle</button>
+      <div *ngIf="sonuc2" class="text-center">
+      <h6>Öğretmen</h6><br>
+      <p>semihozturkj07@gmail.com</p><br>
+      <p>123456</p>
+      <h6>Öğrenci</h6><br>
+      <p>ogr2@gmail.com</p><br>
+      <p>123456</p>
+  
+      </div>
+    </div>
+   
+  </div>
+</div>
